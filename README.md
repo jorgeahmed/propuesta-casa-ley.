@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://storage.googleapis.com/project-1-122521.appspot.com/uploaded%3ALOGO%20SINAI%20full.jpg-4f6609b9-953c-423e-a5ea-60250fe11734" alt="SINAI Mantenimiento Logo" width="150"/>
+<img src="./images/logo_sinai.png" alt="SINAI Mantenimiento Logo" width="150"/>
 <h1 style="font-size: 2.5rem; border-bottom: none;">Propuesta de Renovación Tecnológica</h1>
 <h2 style="font-size: 1.5rem; font-weight: normal;">Preparada para: <strong>Casa Ley S.A.P.I. de C.V.</strong></h2>
 <p>
