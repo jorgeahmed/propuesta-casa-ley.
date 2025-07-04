@@ -133,15 +133,22 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-3">Documentación de Soporte</h2>
                 <p class="max-w-2xl mx-auto text-lg text-slate-600">Acceda a los documentos clave del proyecto para una revisión detallada.</p>
             </div>
-            <div class="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-                <a href="./docs/propuesta_original_cliente.pdf" target="_blank" class="block p-6 bg-white rounded-xl shadow-lg border border-slate-100 text-center hover:border-sky-500 hover:bg-sky-50 transition-all">
-                    <h3 class="font-semibold text-lg text-sky-700">RFP Original del Cliente</h3>
-                    <p class="text-slate-500 mt-1">Consulte el documento de solicitud de propuesta original.</p>
-                </a>
-                <a href="./docs/respuesta_rfp_sinai.pdf" target="_blank" class="block p-6 bg-white rounded-xl shadow-lg border border-slate-100 text-center hover:border-teal-500 hover:bg-teal-50 transition-all">
-                    <h3 class="font-semibold text-lg text-teal-700">Respuesta RFP - SINAI</h3>
-                    <p class="text-slate-500 mt-1">Nuestra respuesta detallada a cada punto de la requisición.</p>
-                </a>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-8 bg-sky-600 text-white rounded-xl shadow-lg flex flex-col items-center justify-center text-center">
+                    <h3 class="font-bold text-2xl">Nuestra Propuesta Detallada</h3>
+                    <p class="mt-2 mb-4">Descargue la respuesta completa al RFP, con toda la información técnica y económica.</p>
+                    <a href="./docs/respuesta_rfp_sinai.pdf" target="_blank" class="inline-flex items-center justify-center px-6 py-3 bg-white text-sky-600 font-semibold rounded-lg shadow-md hover:bg-slate-100 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                        Descargar Propuesta
+                    </a>
+                </div>
+                <div class="p-8 bg-white rounded-xl shadow-lg border border-slate-200 flex flex-col items-center justify-center text-center">
+                    <h3 class="font-semibold text-2xl text-slate-800">RFP Original del Cliente</h3>
+                    <p class="text-slate-500 mt-2 mb-4">Consulte el documento de solicitud de propuesta original para referencia.</p>
+                     <a href="./docs/propuesta_original_cliente.pdf" target="_blank" class="inline-flex items-center justify-center px-6 py-3 bg-slate-100 text-slate-700 font-semibold rounded-lg hover:bg-slate-200 transition-all">
+                        Ver Documento
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -338,7 +345,7 @@
             <p class="max-w-2xl mx-auto text-lg text-slate-600 mb-8">Estamos convencidos de que esta es la solución más robusta y con la mejor relación costo-beneficio para impulsar el futuro de Casa Ley. Quedamos a su entera disposición para cualquier consulta.</p>
             <div class="mt-8 bg-white text-slate-800 rounded-2xl shadow-lg p-8 max-w-lg mx-auto text-left">
                 <div class="flex items-center mb-4">
-                     <img id="main-logo" src="./images/logo_sinai.png" alt="SINAI Mantenimiento Logo" class="h-14 w-auto">
+                     <img id="footer-logo" src="" alt="SINAI Mantenimiento Logo" class="h-16 w-16 mr-4">
                     <div>
                         <h4 class="text-xl font-bold">Jorge G. López Laveaga</h4>
                         <p class="text-slate-600">Soluciones y Estrategia de Negocio</p>
@@ -366,12 +373,17 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
-            /**
-             * INSTRUCTIONS FOR LOCAL IMAGES:
-             * 1. Create a folder named 'images' in the same directory as this HTML file.
-             * 2. Download the product images and save them into the 'images' folder.
-             * 3. Ensure the filenames match those defined in the 'imagePaths' object below.
-             */
+            // =================================================================
+            // INSTRUCCIONES DE PLANTILLA.
+            // =================================================================
+            // Este script controla toda la interactividad de la página.
+            // Para personalizar esta plantilla para un nuevo cliente, solo
+            // necesitas modificar las constantes en la sección "Datos de la Plantilla".
+
+            // --- 1. Rutas de Imágenes ---
+            // Aquí se definen las rutas a todas las imágenes locales.
+            // Asegúrate de que los nombres de archivo coincidan con lo que tienes
+            // en tu carpeta /images.
             const imagePaths = {
                 computo: './images/dell_vxrail_node.jpg',
                 almacenamiento: './images/dell_powerstore.jpg',
@@ -385,14 +397,16 @@
                 hci_vs_dhci_comparison: './images/hci_vs_dhci_comparison.jpg'
             };
 
-            // --- Data ---
-            const utility = 1.30;
+            // --- 2. Datos Financieros ---
+            // Modifica estas constantes para ajustar todos los cálculos económicos.
+            const utility = 1.30; 
             const hardwareBaseCost = 535182;
             const softwareBaseCost = 128400;
             const servicesBaseCost = 75000;
+            const annualOpex = 71586; // Costo anual del soporte
             const totalCapex = (hardwareBaseCost + softwareBaseCost + servicesBaseCost) * utility;
-            const annualOpex = 71586;
-            
+
+            // Datos para las gráficas. Se calculan automáticamente a partir de las constantes anteriores.
             const investmentData = {
                 labels: ['Hardware', 'Software', 'Servicios'],
                 values: [hardwareBaseCost * utility, softwareBaseCost * utility, servicesBaseCost * utility],
@@ -404,9 +418,14 @@
                 colors: ['#0ea5e9', '#e5e7eb']
             };
             
+            // --- FIN DE LA SECCIÓN DE DATOS DE PLANTILLA ---
+
+
             let investmentChartInstance, storageChartInstance, projectionChartInstance;
 
-            // --- Modal Handler ---
+            // --- Lógica de la Página (Generalmente no necesita edición) ---
+
+            // Función para manejar el popup (modal) de detalles de las gráficas.
             const modal = document.getElementById('chart-modal');
             const modalTitle = document.getElementById('modal-title');
             const modalText = document.getElementById('modal-text');
@@ -429,7 +448,7 @@
                 }
             });
 
-            // --- Chart Click Handler ---
+            // Función que se activa al hacer clic en una gráfica.
             function handleChartClick(chart, evt) {
                 const points = chart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
                 if (points.length) {
@@ -450,7 +469,7 @@
                 }
             }
 
-            // --- Chart Rendering ---
+            // Funciones para dibujar cada una de las gráficas.
             function renderInvestmentChart() {
                 const ctx = document.getElementById('investmentChart');
                 if (!ctx) return;
@@ -562,7 +581,7 @@
                 });
             }
 
-            // --- Timeline Interaction ---
+            // --- Lógica para la interactividad de la línea de tiempo ---
             const timelineItems = document.querySelectorAll('.timeline-item');
             const phaseTitleEl = document.getElementById('timeline-phase-title');
             const taskListEl = document.getElementById('timeline-task-list');
@@ -589,7 +608,7 @@
                 item.addEventListener('click', () => updateTimelineDetails(item));
             });
 
-            // --- Component Details Interaction ---
+            // --- Lógica para la interactividad de la sección de Arquitectura ---
             const componentBtns = document.querySelectorAll('.component-btn');
             const componentSections = document.querySelectorAll('.component-section');
 
@@ -622,7 +641,7 @@
                 });
             });
 
-            // --- Vision General Diagram Interaction ---
+            // --- Lógica para la interactividad del diagrama en Visión General ---
             const featureCards = document.querySelectorAll('.feature-card');
             featureCards.forEach(card => {
                 card.addEventListener('mouseenter', () => {
@@ -641,7 +660,7 @@
                 });
             });
             
-            // --- Investment Table Toggle Interaction ---
+            // --- Lógica para desplegar las tablas de inversión ---
             document.querySelectorAll('.toggle-row').forEach(toggleRow => {
                 toggleRow.addEventListener('click', () => {
                     toggleRow.classList.toggle('open');
@@ -652,16 +671,10 @@
                 });
             });
 
-            // --- Architecture Tab Interaction ---
+            // --- Lógica para las pestañas de diagramas de arquitectura ---
             const archTabs = document.querySelectorAll('.arch-tab');
             const archContents = document.querySelectorAll('.arch-content');
             
-            // Set initial image sources for arch contents
-            document.querySelector('#arch-dhci img').src = imagePaths.dhci_layered_architecture;
-            document.querySelector('#arch-manager img').src = imagePaths.vxrail_manager_multisite;
-            document.querySelector('#arch-comparison img').src = imagePaths.hci_vs_dhci_comparison;
-
-
             archTabs.forEach(tab => {
                 tab.addEventListener('click', () => {
                     const targetId = tab.dataset.target;
@@ -677,7 +690,18 @@
                 });
             });
 
-            // --- Initial Setup ---
+            // --- Ejecución Inicial al Cargar la Página ---
+            
+            // Carga las imágenes de los diagramas de arquitectura
+            document.querySelector('#arch-dhci img').src = imagePaths.dhci_layered_architecture;
+            document.querySelector('#arch-manager img').src = imagePaths.vxrail_manager_multisite;
+            document.querySelector('#arch-comparison img').src = imagePaths.hci_vs_dhci_comparison;
+            
+            // Carga los logos
+            document.getElementById('main-logo').src = imagePaths.logo;
+            document.getElementById('footer-logo').src = imagePaths.logo;
+            
+            // Lógica para resaltar la sección activa en la barra de navegación
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('.nav-link');
 
@@ -695,15 +719,17 @@
             }, { rootMargin: "-30% 0px -70% 0px" });
             sections.forEach(section => observer.observe(section));
 
+            // Dibuja todas las gráficas
             renderInvestmentChart();
             renderStorageChart();
             renderWaterfallChart();
             
+            // Muestra los detalles de la primera fase de la línea de tiempo por defecto
             if (timelineItems.length > 0) {
                 updateTimelineDetails(timelineItems[0]);
             }
             
-            // Initial component image load
+            // Carga la imagen del primer componente de arquitectura por defecto
             if (componentBtns.length > 0) {
                 updateComponentImage(componentBtns[0].dataset.component);
             }
